@@ -1,0 +1,4 @@
+backups/
+backups/*
+.env
+passwdfile

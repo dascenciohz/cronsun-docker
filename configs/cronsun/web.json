@@ -1,0 +1,11 @@
+{
+  "BindAddr": ":7079",
+  "Auth": {
+              "Enabled": false
+      },
+  "Session": {
+      "StorePrefixPath": "/cronsun/sess/",
+      "CookieName": "uid",
+      "Expiration": 8640000
+  }
+}

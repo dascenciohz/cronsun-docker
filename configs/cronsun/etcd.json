@@ -1,0 +1,11 @@
+{
+    "Endpoints":[
+        "http://etcd-node1:2379",
+        "http://etcd-node2:2379",
+        "http://etcd-node3:2379"
+    ],
+    "Username":"",
+    "Password":"",
+    "#DialTimeout":"Unit seconds",
+    "DialTimeout": 10
+}

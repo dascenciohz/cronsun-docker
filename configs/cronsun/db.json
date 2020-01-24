@@ -1,0 +1,8 @@
+{
+    "Hosts": [
+      "mongo:27017"
+    ],
+    "Database": "cronsun",
+    "#Timeout": "connect timeout duration/second",
+    "Timeout": 15
+}

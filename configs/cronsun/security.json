@@ -1,0 +1,9 @@
+{
+    "open": false,
+    "users": [
+        "www-data", "nobody"
+    ],
+    "ext": [
+        ".sh", ".py"
+    ]
+}

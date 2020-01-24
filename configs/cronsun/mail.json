@@ -1,0 +1,14 @@
+{
+    "Enable": false,
+    "To": ["sistemas@option.cl"],
+    "#HttpAPI": "如有此字段，则按 http api 方式发送",
+    "#Keepalive": "如果此时间段内没有邮件发送，则关闭 SMTP 连接，单位/秒",
+    "Keepalive": 30,
+    "#doc": "https://godoc.org/github.com/go-gomail/gomail#Dialer",
+    "Host": "smtp",
+    "Port": 2424,
+    "Username": "mta-desarrollo",
+    "Password": "devPass2016",
+    "SSL": false,
+    "LocalName": "cronsun-node@option.cl"
+}

@@ -1,0 +1,14 @@
+DOCKER_SOCK=/var/run/docker.sock
+
+INGRESS_HTTP_PORT=80
+INGRESS_HTTPS_PORT=443
+INGRESS_DOMAINS=Host(`ingress.mydomain.com`)
+INGRESS_ADMIN_USER=cronsun:cronsun:f9cd937852fe269683e8dac85d4744e9
+INGRESS_REALM_USER=cronsun
+INGRESS_ADMIN_MAIL=
+
+CRONSUN_CONFIG=./configs/cronsun
+CRONSUN_DOMAINS=Host(`cronsun.mydomain.com`)
+
+MONGO_USERNAME=cronsun
+MONGO_DATABASE=cronsun
