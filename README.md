@@ -2,11 +2,31 @@
 
 **Cronsun** is a distributed cron-style job system. It's similar to crontab.
 
-With Cronsun you can schedule your work to run in the background and at the intervals of time you want. You can schedule jobs in PHP, Node, Shell, MySQL and any other you want, you just have to configure a work node.
+With Cronsun you can schedule your work to run in the background and at the intervals of time you want. You can schedule jobs in PHP, Python, Node, Shell, MySQL and any other you want, you just have to configure a work node.
 
 Cronsun uses [ETCD](https://github.com/etcd-io/etcd) in Cluster mode to store all the data corresponding to the scheduled jobs. Each output of the scheduled jobs is stored in [Mongo DB](https://www.mongodb.com/es).
 
 # SECURITY
+
+## Task Execution - Users
+
+Scheduled tasks are executed by specific users. If these users are not allowed by Cronsun, they will not be executed.
+This is why, if you want to execute tasks as a "custom" user, you must allow it in the security.json file.
+
+```
+{
+    "open": false,
+    "users": [
+        "www-data", "node", "myuser", "mycustomuser"
+    ],
+    "ext": [
+        ".sh", ".py"
+    ]
+}
+```
+
+**NOTE** Always try to avoid the root user to execute your work.
+
 
 ## DigestAuth - Web Security
 The [DigestAuth - Traefik](https://docs.traefik.io/middlewares/digestauth) middleware is a quick way to restrict access to your services to known users.
@@ -84,6 +104,51 @@ docker-compose up --build -d
 ```
 docker-compose up --build -d --force-recreate
 ```
+
+# WORKERS
+
+By default Cronsun comes with a worker in PHP. If you want to add work nodes you can continue reading this document.
+
+## How to add a custom node worker
+
+To add a custom node we must create our own docker image. For example, if we want a work node that executes tasks programmed in Python we must create a Dockerfile similar to this:
+
+```
+## We use the python image we need
+FROM python:3.5-alpine
+
+LABEL maintainer="Daniel Ascencio <daniel.ascencio.hz@gmail.com>"
+
+## Declare the environment variables
+ENV GOROOT /usr/lib/go
+ENV GOPATH /gopath
+ENV GOBIN /gopath/bin
+ENV PATH $PATH:$GOROOT/bin:$GOPATH/bin
+ENV CRONSUN_VERSION 0.3.5
+
+## Download and install cronsun
+RUN set -x \
+    && echo http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories \
+    && apk --no-cache add curl go git bash binutils-gold libc-dev \
+    && mkdir -p /gopath/bin \
+    && curl -L https://github.com/shunfei/cronsun/releases/download/v$CRONSUN_VERSION/cronsun-v$CRONSUN_VERSION-linux-amd64.zip -o cronsun.zip \
+    && mkdir -p /opt \
+    && unzip cronsun.zip -d /opt \
+    && mv /opt/cronsun-v$CRONSUN_VERSION /opt/cronsun \
+    && chmod +x /opt/cronsun/cronweb
+
+EXPOSE 7079
+
+WORKDIR /opt/cronsun
+
+ENTRYPOINT []
+
+## This line is important since we declare that it is a working node.
+CMD ./cronnode -conf conf/base.json
+```
+
+From the web administrator we configure a new group called python and add the node.
+Now you are ready to run jobs in python.
 
 # CREDITS
 
