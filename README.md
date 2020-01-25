@@ -1,10 +1,10 @@
 # CRONSUN
 
 **Cronsun** is a distributed cron-style job system. It's similar to crontab.
-The goal of this project is to make it much easier to manage jobs on lots of machines and provides high availability. cronsun is different from Azkaban, Chronos, Airflow.
 
-Cronsun uses [ETCD](https://github.com/etcd-io/etcd) in Cluster mode to store all the data corresponding to the scheduled jobs.
-Each output of the scheduled jobs is stored in [Mongo DB](https://www.mongodb.com/es).
+With Cronsun you can schedule your work to run in the background and at the intervals of time you want. You can schedule jobs in PHP, Node, Shell, MySQL and any other you want, you just have to configure a work node.
+
+Cronsun uses [ETCD](https://github.com/etcd-io/etcd) in Cluster mode to store all the data corresponding to the scheduled jobs. Each output of the scheduled jobs is stored in [Mongo DB](https://www.mongodb.com/es).
 
 # SECURITY
 
