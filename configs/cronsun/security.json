@@ -1,7 +1,7 @@
 {
     "open": false,
     "users": [
-        "www-data", "nobody"
+        "www-data"
     ],
     "ext": [
         ".sh", ".py"
