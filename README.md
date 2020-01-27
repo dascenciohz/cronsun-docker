@@ -27,7 +27,6 @@ This is why, if you want to execute tasks as a "custom" user, you must allow it 
 
 **NOTE** Always try to avoid the root user to execute your work.
 
-
 ## DigestAuth - Web Security
 The [DigestAuth - Traefik](https://docs.traefik.io/middlewares/digestauth) middleware is a quick way to restrict access to your services to known users.
 
@@ -53,6 +52,23 @@ cronsun:cronsun:f9cd937852fe269683e8dac85d4744e9
 ```
 
 **NOTE** By default the username and password is: cronsun
+
+## HTTPS - Let's Encrypt
+
+You can configure Traefik to use an ACME provider (like Let's Encrypt) for automatic certificate generation.
+
+To configure cronsun under HTTPS you just have to uncomment the following lines in your docker-compose.yaml file:
+
+```
+#- --certificatesResolvers.sample.acme.email=${INGRESS_ADMIN_MAIL}
+#- --certificatesResolvers.sample.acme.storage=/acme/certificates.json
+#- --certificatesResolvers.sample.acme.httpChallenge.entryPoint=web
+```
+
+If you need more information about it, you can follow these links:
+
+* [Traefik ACME](https://docs.traefik.io/https/acme/)
+* [Traefik ACME Docker Compose](https://docs.traefik.io/user-guides/docker-compose/acme-tls/)
 
 # DOCKER
 
