@@ -67,6 +67,7 @@ To configure cronsun under HTTPS you just have to uncomment the following lines 
 
 If you need more information about it, you can follow these links:
 
+* [Let's Encrypt](https://letsencrypt.org/)
 * [Traefik ACME](https://docs.traefik.io/https/acme/)
 * [Traefik ACME Docker Compose](https://docs.traefik.io/user-guides/docker-compose/acme-tls/)
 
